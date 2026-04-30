@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -70,10 +71,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
+              // TextFormField untuk password dengan validasi yang lebih ketat
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
-                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  // Tambahkan ikon untuk menampilkan atau menyembunyikan password
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                    },
+                  ),
+                ),
+                // Sembunyikan teks password berdasarkan state isPasswordVisible
+                obscureText: !isPasswordVisible,
+
+
                 validator: (value) {
                   // Validasi password 
                   if (value == null || value.isEmpty) {
