@@ -12,6 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginScreen(),
+      routes: {
+        '/forgot-password': (context) => ForgotPasswordScreen(),
+      }
     );
   }
 }
@@ -118,6 +121,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
 
+              // Lupa Password Button
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/forgot-password');
+                },
+                child: const Text('Lupa Password?'),
+              ),
+
               // Error message
               if (errorMessage.isNotEmpty) ...[
                 const SizedBox(height: 10),
@@ -138,5 +149,18 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+}
+
+class ForgotPasswordScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Lupa Password')),
+      body: const Center(
+        child: Text('Lupa Password Screen'),
+      ),
+    );
+
   }
 }
