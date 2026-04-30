@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key}); // tambahkan const constructor
+  const MyApp({super.key}); // const constructor
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -27,28 +26,41 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // State untuk menampilkan loading dan error message
+  // State
   bool isLoading = false;
   String errorMessage = '';
   bool isPasswordVisible = false;
 
   void _login() {
     if (_formKey.currentState!.validate()) {
+      // Simulasi proses login
+      setState(() {
+        isLoading = true;
+        errorMessage = '';
+      });
+
       String email = _emailController.text;
       String password = _passwordController.text;
       print('Email: $email');
       print('Password: $password');
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Login berhasil!")),
-      );
+      // Simulasi delay tambahan
+      Future.delayed(const Duration(seconds: 2), () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Login berhasil!")),
+        );
+
+        setState(() {
+          isLoading = false;
+        });
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login Screen')),
+      appBar: AppBar(title: const Text('Login Screen')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -56,30 +68,33 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Email
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) {
-                  // Validasi email sederhana
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
                   }
-                  RegExp emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$'); // agar pola email benar
+                  RegExp emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
                   if (!emailRegex.hasMatch(value)) {
                     return 'Invalid email format';
                   }
                   return null;
                 },
               ),
-              // TextFormField untuk password dengan validasi yang lebih ketat
+
+              // Password
               TextFormField(
                 controller: _passwordController,
+                obscureText: !isPasswordVisible,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  // Tambahkan ikon untuk menampilkan atau menyembunyikan password
                   suffixIcon: IconButton(
                     icon: Icon(
-                      isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                      isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
                     ),
                     onPressed: () {
                       setState(() {
@@ -88,29 +103,36 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                 ),
-                // Sembunyikan teks password berdasarkan state isPasswordVisible
-                obscureText: !isPasswordVisible,
-
-
                 validator: (value) {
-                  // Validasi password 
                   if (value == null || value.isEmpty) {
                     return 'Please enter your password';
                   }
                   if (value.length < 8) {
                     return 'Password minimal 8 karakter';
                   }
-                  if (!RegExp(r'[A-Za-z]').hasMatch(value) || !RegExp(r'[0-9]').hasMatch(value)) {
+                  if (!RegExp(r'[A-Za-z]').hasMatch(value) ||
+                      !RegExp(r'[0-9]').hasMatch(value)) {
                     return 'Password harus mengandung huruf dan angka';
                   }
                   return null;
                 },
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _login,
-                child: Text('Login'),
-              ),
+
+              // Error message
+              if (errorMessage.isNotEmpty) ...[
+                const SizedBox(height: 10),
+                Text(errorMessage, style: const TextStyle(color: Colors.red)),
+              ],
+
+              const SizedBox(height: 20),
+
+              // Tombol Login / Loading
+              isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: _login,
+                      child: const Text('Login'),
+                    ),
             ],
           ),
         ),
