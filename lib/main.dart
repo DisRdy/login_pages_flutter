@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       routes: {
         '/forgot-password': (context) => ForgotPasswordScreen(),
-      }
+      },
     );
   }
 }
@@ -36,7 +36,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() {
     if (_formKey.currentState!.validate()) {
-      // Simulasi proses login
       setState(() {
         isLoading = true;
         errorMessage = '';
@@ -49,9 +48,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
       // Simulasi delay tambahan
       Future.delayed(const Duration(seconds: 2), () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Login berhasil!")),
-        );
+        if (email == "disna@gmail.com" && password == "password123") {
+          // SnackBar sukses
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Login berhasil!"),
+              backgroundColor: Colors.green,
+              duration: Duration(seconds: 2),
+            ),
+          );
+        } else {
+          // SnackBar error
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Email atau password salah!"),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
 
         setState(() {
           isLoading = false;
@@ -161,6 +175,5 @@ class ForgotPasswordScreen extends StatelessWidget {
         child: Text('Lupa Password Screen'),
       ),
     );
-
   }
 }
