@@ -8,6 +8,7 @@ Project Flutter untuk aplikasi mobile sederhana dengan halaman login, lupa passw
 lib/
   main.dart
   screens/
+    forgot_password.dart
     home.dart
     login.dart
     profile.dart
@@ -19,7 +20,10 @@ lib/
 ## Isi Folder
 
 - `lib/main.dart` berisi konfigurasi awal aplikasi dan route.
-- `lib/screens/` berisi halaman utama aplikasi.
+- `lib/screens/login.dart` berisi halaman login.
+- `lib/screens/forgot_password.dart` berisi halaman lupa password.
+- `lib/screens/home.dart` berisi halaman dashboard.
+- `lib/screens/profile.dart` disiapkan untuk halaman profil.
 - `lib/widgets/` disiapkan untuk komponen yang bisa dipakai ulang.
 - `lib/models/` disiapkan untuk struktur data.
 - `lib/utils/` disiapkan untuk helper, konstanta, atau konfigurasi tambahan.
@@ -29,6 +33,7 @@ lib/
 - `LoginScreen`
 - `ForgotPasswordScreen`
 - `DashboardScreen`
+- `ProfileScreen` belum dibuat
 
 ## Menjalankan Project
 
