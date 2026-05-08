@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -13,20 +13,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // State
   bool isLoading = false;
-  String errorMessage = '';
   bool isPasswordVisible = false;
 
   void _login() {
     if (_formKey.currentState!.validate()) {
       setState(() {
         isLoading = true;
-        errorMessage = '';
       });
 
       String email = _emailController.text;
       String password = _passwordController.text;
-      print('Email: $email');
-      print('Password: $password');
 
       // Simulasi delay tambahan
       Future.delayed(const Duration(seconds: 2), () {
@@ -37,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
               builder: (context) => DashboardScreen(email: email),
             ),
           );
+
           // SnackBar sukses
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -109,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                 ),
+                
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your password';
@@ -131,12 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: const Text('Lupa Password?'),
               ),
-
-              // Error message
-              if (errorMessage.isNotEmpty) ...[
-                const SizedBox(height: 10),
-                Text(errorMessage, style: const TextStyle(color: Colors.red)),
-              ],
 
               const SizedBox(height: 20),
 

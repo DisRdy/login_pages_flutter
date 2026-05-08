@@ -123,7 +123,6 @@ final List<Map<String, dynamic>> sahamList = [
                   },
                 ),
               ),
-            // Add more widgets for displaying stock information
           ],
         ),
       ),

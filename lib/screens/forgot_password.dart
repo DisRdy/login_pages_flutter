@@ -31,10 +31,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             backgroundColor: Colors.green,
           ),
         );
-
-        setState(() {
-          isLoading = false;
-        });
       });
     }
   }

@@ -31,9 +31,14 @@ lib/
 ## Halaman
 
 - `LoginScreen`
+<img src="lib/img/login_page.png" alt="Preview aplikasi" width="auto">
+
 - `ForgotPasswordScreen`
+<img src="lib/img/forgot.png" alt="Preview aplikasi" width="auto">
+
 - `DashboardScreen`
-- `ProfileScreen` belum dibuat
+<img src="lib/img/dashboard" alt="Preview aplikasi" width="auto">
+
 
 ## Menjalankan Project
 

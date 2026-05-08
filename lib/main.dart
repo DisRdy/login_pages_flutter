@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'screens/forgot_password.dart';
-import 'screens/home.dart';
+import 'screens/dashboard.dart';
 import 'screens/login.dart';
 
 void main() {
