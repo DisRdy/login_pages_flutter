@@ -37,7 +37,7 @@ lib/
 <img src="lib/img/forgot.png" alt="Preview aplikasi" width="auto">
 
 - `DashboardScreen`
-<img src="lib/img/dashboard" alt="Preview aplikasi" width="auto">
+<img src="lib/img/dashboard.png" alt="Preview aplikasi" width="auto">
 
 
 ## Menjalankan Project
